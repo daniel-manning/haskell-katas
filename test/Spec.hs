@@ -1,2 +1,13 @@
+import Test.QuickCheck
+import Lib
+import Data.Maybe
+
+
 main :: IO ()
-main = putStrLn "Test suite not yet implemented"
+main = do
+  quickCheck propMaxRepetitionOfI
+
+
+
+propMaxRepetitionOfI :: Int -> Bool
+propMaxRepetitionOfI arabicNumber = length (filter (=='I') (fromJust (arabicNumberToNumeral arabicNumber))) <= 4
