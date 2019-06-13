@@ -7,7 +7,5 @@ main :: IO ()
 main = do
   quickCheck propMaxRepetitionOfI
 
-
-
-propMaxRepetitionOfI :: Int -> Bool
-propMaxRepetitionOfI arabicNumber = length (filter (=='I') (fromJust (arabicNumberToNumeral arabicNumber))) <= 4
+propMaxRepetitionOfI :: Property
+propMaxRepetitionOfI = forAll (choose (1,4000)) $ \n -> length (filter (=='I') (fromJust (arabicNumberToNumeral n))) <= 4
